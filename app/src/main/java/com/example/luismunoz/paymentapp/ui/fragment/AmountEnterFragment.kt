@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.navigation.fragment.findNavController
 import com.example.luismunoz.paymentapp.R
 import com.example.luismunoz.paymentapp.databinding.FragmentAmountEnterBinding
@@ -30,8 +31,35 @@ class AmountEnterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btn1.setOnClickListener {
-            findNavController().navigate(R.id.action_amountEnterFragment_to_paymentSelectionFragment)
+        initListeners()
+    }
+
+    private fun initListeners() {
+        binding.edAmountEnterFragmentValue.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                validateAmountInput()
+            }
+            false
+        }
+
+        binding.btnAmountEnterFragmentGoToPaymentMethod.setOnClickListener {
+            validateAmountInput()
+        }
+    }
+
+    private fun validateAmountInput() {
+        val amountValue = binding.edAmountEnterFragmentValue.text.toString()
+
+        if (amountValue.isEmpty()) {
+            binding.tilAmountEnterFragmentAmountContainer.error = null
+            binding.tilAmountEnterFragmentAmountContainer.error = getString(R.string.text_add_amount_error)
+        } else if (amountValue.toInt() == 0) {
+            binding.tilAmountEnterFragmentAmountContainer.error = null
+            binding.tilAmountEnterFragmentAmountContainer.error = getString(R.string.text_add_amount_different_to_zero)
+        } else {
+            binding.tilAmountEnterFragmentAmountContainer.error = null
+            val action = AmountEnterFragmentDirections.actionAmountEnterFragmentToPaymentSelectionFragment(amount = amountValue.toInt())
+            findNavController().navigate(action)
         }
     }
 

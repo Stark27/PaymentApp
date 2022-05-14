@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_paymentSelectionFragment_to_bankSelectionFragment"
             app:destination="@id/bankSelectionFragment" />
+        <argument
+            android:name="amount"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/amountEnterFragment"
