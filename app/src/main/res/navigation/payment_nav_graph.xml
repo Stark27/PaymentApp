@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/payment_nav_graph.xml"
+    app:startDestination="@id/amountEnterFragment">
+
+    <fragment
+        android:id="@+id/paymentSelectionFragment"
+        android:name="com.example.luismunoz.paymentapp.ui.fragment.PaymentSelectionFragment"
+        android:label="Medio de pago"
+        tools:layout="@layout/fragment_payment_selection">
+        <action
+            android:id="@+id/action_paymentSelectionFragment_to_bankSelectionFragment"
+            app:destination="@id/bankSelectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/amountEnterFragment"
+        android:name="com.example.luismunoz.paymentapp.ui.fragment.AmountEnterFragment"
+        android:label="Monto a pagar"
+        tools:layout="@layout/fragment_amount_enter">
+        <action
+            android:id="@+id/action_amountEnterFragment_to_paymentSelectionFragment"
+            app:destination="@id/paymentSelectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bankSelectionFragment"
+        android:name="com.example.luismunoz.paymentapp.ui.fragment.BankSelectionFragment"
+        android:label="Banco"
+        tools:layout="@layout/fragment_bank_selection">
+        <action
+            android:id="@+id/action_bankSelectionFragment_to_feeSelectionFragment"
+            app:destination="@id/feeSelectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/feeSelectionFragment"
+        android:name="com.example.luismunoz.paymentapp.ui.fragment.FeeSelectionFragment"
+        android:label="Cuotas"
+        tools:layout="@layout/fragment_fee_selection" />
+</navigation>
