@@ -8,14 +8,14 @@
     <fragment
         android:id="@+id/paymentSelectionFragment"
         android:name="com.example.luismunoz.paymentapp.ui.fragment.PaymentSelectionFragment"
-        android:label="Medio de pago"
+        android:label="Métodos de pago"
         tools:layout="@layout/fragment_payment_selection">
         <action
             android:id="@+id/action_paymentSelectionFragment_to_bankSelectionFragment"
             app:destination="@id/bankSelectionFragment" />
         <argument
             android:name="amount"
-            app:argType="integer" />
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/amountEnterFragment"
@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/bankSelectionFragment"
         android:name="com.example.luismunoz.paymentapp.ui.fragment.BankSelectionFragment"
-        android:label="Banco"
+        android:label="Bancos"
         tools:layout="@layout/fragment_bank_selection">
         <action
             android:id="@+id/action_bankSelectionFragment_to_feeSelectionFragment"

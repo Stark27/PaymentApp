@@ -6,14 +6,82 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.PaymentSelectionFragment">
 
-    <Button
-        android:id="@+id/btn2"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glPaymentSelectionFragmentBegin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="a pantalla 3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/margin_16"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glPaymentSelectionFragmentEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/margin_16"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glPaymentSelectionFragmentBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="@dimen/margin_16"/>
+
+    <TextView
+        android:id="@+id/tvPaymentSelectionFragmentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="18dp"
+        android:text="@string/text_payment_selection"
+        app:layout_constraintStart_toEndOf="@+id/glPaymentSelectionFragmentBegin"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/sflPaymentSelectionFragmentContainer"
+        android:layout_width="@dimen/width_0"
+        android:layout_height="@dimen/height_0"
+        android:layout_marginTop="@dimen/margin_16"
+        app:layout_constraintStart_toEndOf="@+id/glPaymentSelectionFragmentBegin"
+        app:layout_constraintTop_toBottomOf="@+id/tvPaymentSelectionFragmentTitle"
+        app:layout_constraintEnd_toStartOf="@+id/glPaymentSelectionFragmentEnd"
+        app:layout_constraintBottom_toTopOf="@+id/glPaymentSelectionFragmentBottom" >
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llPaymentSelectionFragmentLoadingContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_payment_method_loading"/>
+            <include layout="@layout/item_payment_method_loading"/>
+            <include layout="@layout/item_payment_method_loading"/>
+            <include layout="@layout/item_payment_method_loading"/>
+            <include layout="@layout/item_payment_method_loading"/>
+            <include layout="@layout/item_payment_method_loading"/>
+            <include layout="@layout/item_payment_method_loading"/>
+            <include layout="@layout/item_payment_method_loading"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPaymentSelectionContainer"
+        android:layout_width="@dimen/width_0"
+        android:layout_height="@dimen/height_0"
+        android:layout_marginTop="@dimen/margin_16"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/glPaymentSelectionFragmentBegin"
+        app:layout_constraintTop_toBottomOf="@+id/tvPaymentSelectionFragmentTitle"
+        app:layout_constraintEnd_toStartOf="@+id/glPaymentSelectionFragmentEnd"
+        app:layout_constraintBottom_toTopOf="@+id/glPaymentSelectionFragmentBottom" />
+
+    <include layout="@layout/generic_error_layout"
+        android:id="@+id/generic_error_container"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/glPaymentSelectionFragmentBegin"
+        app:layout_constraintTop_toBottomOf="@+id/tvPaymentSelectionFragmentTitle"
+        app:layout_constraintEnd_toStartOf="@+id/glPaymentSelectionFragmentEnd"
+        app:layout_constraintBottom_toTopOf="@+id/glPaymentSelectionFragmentBottom" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

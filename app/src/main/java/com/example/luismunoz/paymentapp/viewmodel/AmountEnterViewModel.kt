@@ -17,7 +17,7 @@ class AmountEnterViewModel: ViewModel() {
     fun validateAmountInput(amountValue: String) {
         if (amountValue.isEmpty()) {
             _amountValidate.postValue(Event(ValidateAmountStatus.EMPTY_AMOUNT))
-        } else if (amountValue.toInt() == 0) {
+        } else if (amountValue.toLong() < 1) {
             _amountValidate.postValue(Event(ValidateAmountStatus.ZERO_AMOUNT))
         } else {
             _amountValidate.postValue(Event(ValidateAmountStatus.VALID_AMOUNT))

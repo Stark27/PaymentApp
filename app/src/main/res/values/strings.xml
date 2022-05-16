@@ -4,4 +4,7 @@
     <string name="text_continue">Continuar</string>
     <string name="text_add_amount_error">Debes ingresar un monto</string>
     <string name="text_add_amount_different_to_zero">Debes ingresar un monto mayor a cero</string>
+    <string name="text_payment_selection">Selecciona un método de pago</string>
+    <string name="text_generic_error_title">Error</string>
+    <string name="text_generic_error_subtitle">Ocurrió un error al obtener la información, por favor, inténtalo nuevamente</string>
 </resources>
