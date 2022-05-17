@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvItemPaymentMethodContainer"
+        android:id="@+id/cvItemBankContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="@dimen/card_elevation"
@@ -25,7 +25,7 @@
             android:layout_height="@dimen/item_list_height">
 
             <ImageView
-                android:id="@+id/imgItemPaymentMethodIcon"
+                android:id="@+id/imgItemBankIcon"
                 android:layout_width="@dimen/item_width_icon"
                 android:layout_height="@dimen/item_height_icon"
                 android:layout_marginStart="@dimen/margin_10"
@@ -37,21 +37,21 @@
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
             <TextView
-                android:id="@+id/tvItemPaymentMethodName"
+                android:id="@+id/tvItemBankName"
                 android:layout_width="@dimen/width_0"
                 android:layout_height="wrap_content"
-                tools:text="MasterCard"
+                tools:text="Banco de Chile"
                 android:layout_marginStart="@dimen/margin_10"
                 android:layout_marginEnd="@dimen/margin_10"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/imgItemPaymentMethodIcon"
+                app:layout_constraintStart_toEndOf="@+id/imgItemBankIcon"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/viewItemPaymentMethodDivider"/>
+                app:layout_constraintEnd_toStartOf="@+id/viewItemBankDivider"/>
 
             <View
-                android:id="@+id/viewItemPaymentMethodDivider"
+                android:id="@+id/viewItemBankDivider"
                 android:layout_width="@dimen/width_1"
                 android:layout_height="@dimen/height_0"
                 android:layout_marginEnd="@dimen/margin_10"
@@ -59,11 +59,11 @@
                 android:layout_marginTop="@dimen/margin_10"
                 android:layout_marginBottom="@dimen/margin_10"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imgItemPaymentMethodRightArrow"
+                app:layout_constraintEnd_toStartOf="@+id/imgItemBankRightArrow"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
             <ImageView
-                android:id="@+id/imgItemPaymentMethodRightArrow"
+                android:id="@+id/imgItemBankRightArrow"
                 android:layout_width="@dimen/width_20"
                 android:layout_height="@dimen/height_20"
                 android:layout_marginEnd="@dimen/margin_10"

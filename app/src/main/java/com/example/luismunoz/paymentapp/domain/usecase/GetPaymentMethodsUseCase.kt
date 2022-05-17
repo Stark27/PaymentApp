@@ -49,16 +49,17 @@ class GetPaymentMethodsUseCase @Inject constructor(private val repository: Payme
 
         paymentMethods?.forEach { paymentMethod ->
             if (paymentMethod.paymentTypeId.equals(CREDIT_CARD_PAYMENT_TYPE)) {
-                if (!paymentMethod.id.isNullOrEmpty()
-                    && paymentMethod.status.equals(METHOD_PAYMENT_ACTIVE)
+                if (paymentMethod.status.equals(METHOD_PAYMENT_ACTIVE)
+                    && !paymentMethod.id.isNullOrEmpty()
                     && !paymentMethod.name.isNullOrEmpty()
-                    && !paymentMethod.thumbnail.isNullOrEmpty()) {
+                    && !paymentMethod.secureThumbnail.isNullOrEmpty()
+                ) {
 
                     creditCardPayments.add(
                         DataPaymentMethod(
                             paymentMethodId = paymentMethod.id,
                             paymentMethodName = paymentMethod.name,
-                            paymentMethodPath = paymentMethod.thumbnail
+                            paymentMethodPath = paymentMethod.secureThumbnail
                         )
                     )
                 }

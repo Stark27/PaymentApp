@@ -15,7 +15,7 @@
             app:destination="@id/bankSelectionFragment" />
         <argument
             android:name="amount"
-            app:argType="long" />
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/amountEnterFragment"
@@ -34,6 +34,12 @@
         <action
             android:id="@+id/action_bankSelectionFragment_to_feeSelectionFragment"
             app:destination="@id/feeSelectionFragment" />
+        <argument
+            android:name="amount"
+            app:argType="string" />
+        <argument
+            android:name="paymentMethodId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/feeSelectionFragment"

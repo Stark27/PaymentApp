@@ -11,6 +11,9 @@ import com.example.luismunoz.paymentapp.databinding.ItemPaymentMethodListBinding
 import com.example.luismunoz.paymentapp.domain.ItemOnClickListener
 import com.example.luismunoz.paymentapp.domain.model.DataPaymentMethod
 
+/**
+ *  Adapter that handle a payment methods list
+ */
 class PaymentMethodAdapter(
     private var paymentMethods: MutableList<DataPaymentMethod>,
     private var context: Context,

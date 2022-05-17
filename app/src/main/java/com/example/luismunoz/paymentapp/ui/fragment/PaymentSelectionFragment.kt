@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.luismunoz.paymentapp.R
 import com.example.luismunoz.paymentapp.databinding.FragmentPaymentSelectionBinding
 import com.example.luismunoz.paymentapp.domain.ItemOnClickListener
 import com.example.luismunoz.paymentapp.domain.Resource
@@ -18,6 +17,9 @@ import com.example.luismunoz.paymentapp.ui.adapter.PaymentMethodAdapter
 import com.example.luismunoz.paymentapp.viewmodel.PaymentSelectionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ *  Fragment that manage and show design to select a payment method
+ */
 @AndroidEntryPoint
 class PaymentSelectionFragment : Fragment(), ItemOnClickListener {
 
@@ -45,12 +47,6 @@ class PaymentSelectionFragment : Fragment(), ItemOnClickListener {
 
         initObservers()
         initRecycler()
-
-        val amount = args.amount
-
-//        binding.btn2.setOnClickListener {
-//            findNavController().navigate(R.id.action_paymentSelectionFragment_to_bankSelectionFragment)
-//        }
     }
 
     private fun initRecycler() {
@@ -83,7 +79,14 @@ class PaymentSelectionFragment : Fragment(), ItemOnClickListener {
     }
 
     override fun onClickItem(position: Int, itemId: String) {
-        findNavController().navigate(R.id.action_paymentSelectionFragment_to_bankSelectionFragment)
+        val amount = args.amount
+        val action = PaymentSelectionFragmentDirections
+            .actionPaymentSelectionFragmentToBankSelectionFragment(
+                amount = amount,
+                paymentMethodId = itemId
+            )
+
+        findNavController().navigate(action)
     }
 
 }

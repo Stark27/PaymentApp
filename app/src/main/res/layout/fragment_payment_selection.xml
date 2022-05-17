@@ -53,14 +53,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/item_payment_method_loading"/>
-            <include layout="@layout/item_payment_method_loading"/>
-            <include layout="@layout/item_payment_method_loading"/>
-            <include layout="@layout/item_payment_method_loading"/>
-            <include layout="@layout/item_payment_method_loading"/>
-            <include layout="@layout/item_payment_method_loading"/>
-            <include layout="@layout/item_payment_method_loading"/>
-            <include layout="@layout/item_payment_method_loading"/>
+            <include layout="@layout/item_loading"/>
+            <include layout="@layout/item_loading"/>
+            <include layout="@layout/item_loading"/>
+            <include layout="@layout/item_loading"/>
+            <include layout="@layout/item_loading"/>
+            <include layout="@layout/item_loading"/>
+            <include layout="@layout/item_loading"/>
+            <include layout="@layout/item_loading"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </com.facebook.shimmer.ShimmerFrameLayout>

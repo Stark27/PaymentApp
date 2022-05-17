@@ -60,7 +60,7 @@ class AmountEnterFragment : Fragment() {
                         binding.tilAmountEnterFragmentAmountContainer.error = null
 
                         val amountValue = binding.edAmountEnterFragmentValue.text.toString()
-                        val action = AmountEnterFragmentDirections.actionAmountEnterFragmentToPaymentSelectionFragment(amount = amountValue.toLong())
+                        val action = AmountEnterFragmentDirections.actionAmountEnterFragmentToPaymentSelectionFragment(amount = amountValue)
                         findNavController().navigate(action)
                     }
                 }
