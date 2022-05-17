@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:digits="0123456789"
             android:inputType="number"
-            android:maxLength="19"
+            android:maxLength="7"
             android:imeOptions="actionDone"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -37,6 +37,7 @@
         android:layout_height="wrap_content"
         android:text="@string/text_continue"
         android:layout_marginTop="16dp"
+        android:enabled="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilAmountEnterFragmentAmountContainer"
         app:layout_constraintEnd_toEndOf="parent"

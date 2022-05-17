@@ -1,6 +1,8 @@
 package com.example.luismunoz.paymentapp.ui.fragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,16 +54,19 @@ class AmountEnterFragment : Fragment() {
                 when(result) {
                     ValidateAmountStatus.EMPTY_AMOUNT -> {
                         binding.tilAmountEnterFragmentAmountContainer.error = getString(R.string.text_add_amount_error)
+                        binding.btnAmountEnterFragmentGoToPaymentMethod.isEnabled = false
                     }
-                    ValidateAmountStatus.ZERO_AMOUNT -> {
+                    ValidateAmountStatus.MIN_AMOUNT -> {
                         binding.tilAmountEnterFragmentAmountContainer.error = getString(R.string.text_add_amount_different_to_zero)
+                        binding.btnAmountEnterFragmentGoToPaymentMethod.isEnabled = false
+                    }
+                    ValidateAmountStatus.MAX_AMOUNT -> {
+                        binding.tilAmountEnterFragmentAmountContainer.error = getString(R.string.text_add_amount_max_allow)
+                        binding.btnAmountEnterFragmentGoToPaymentMethod.isEnabled = false
                     }
                     else -> {
                         binding.tilAmountEnterFragmentAmountContainer.error = null
-
-                        val amountValue = binding.edAmountEnterFragmentValue.text.toString()
-                        val action = AmountEnterFragmentDirections.actionAmountEnterFragmentToPaymentSelectionFragment(amount = amountValue)
-                        findNavController().navigate(action)
+                        binding.btnAmountEnterFragmentGoToPaymentMethod.isEnabled = true
                     }
                 }
             }
@@ -72,6 +77,8 @@ class AmountEnterFragment : Fragment() {
      *  Init listener for keyboard or button
      */
     private fun initListeners() {
+        binding.edAmountEnterFragmentValue.addTextChangedListener(validateTextAmount)
+
         binding.edAmountEnterFragmentValue.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val amountValue = binding.edAmountEnterFragmentValue.text.toString()
@@ -82,7 +89,22 @@ class AmountEnterFragment : Fragment() {
 
         binding.btnAmountEnterFragmentGoToPaymentMethod.setOnClickListener {
             val amountValue = binding.edAmountEnterFragmentValue.text.toString()
-            viewModel.validateAmountInput(amountValue)
+            val action = AmountEnterFragmentDirections.actionAmountEnterFragmentToPaymentSelectionFragment(amount = amountValue)
+            findNavController().navigate(action)
+        }
+    }
+
+    private val validateTextAmount = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            // No implemented method
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            // No implemented method
+        }
+
+        override fun afterTextChanged(amount: Editable?) {
+            viewModel.validateAmountInput(amountValue = amount.toString())
         }
     }
 
