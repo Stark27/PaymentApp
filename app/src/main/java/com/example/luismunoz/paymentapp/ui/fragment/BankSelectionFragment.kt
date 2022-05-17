@@ -52,7 +52,11 @@ class BankSelectionFragment : Fragment(), ItemOnClickListener {
 
         initObservers()
         initRecyclerView()
-        viewModel.onFragmentReady(methodPaymentId)
+        onFragmentReady()
+    }
+
+    private fun onFragmentReady() {
+        viewModel.getAllBanks(methodPaymentId)
     }
 
     private fun initRecyclerView() {

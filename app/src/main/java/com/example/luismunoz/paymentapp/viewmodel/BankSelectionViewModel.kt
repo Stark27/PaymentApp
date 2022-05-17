@@ -17,7 +17,7 @@ class BankSelectionViewModel @Inject constructor(private val useCase: GetAllBank
 
     private var _paymentMethodId = MutableLiveData<String>()
 
-    fun onFragmentReady(paymentMethodId: String) {
+    fun getAllBanks(paymentMethodId: String) {
         _paymentMethodId.value = paymentMethodId
     }
 

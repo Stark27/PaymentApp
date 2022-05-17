@@ -31,14 +31,14 @@ class GetPaymentMethodsUseCaseMock {
             id = "",
             name = "Mastercard",
             paymentTypeId = "credit_card",
-            thumbnail = "https://http2.mlstatic.com/storage/logos-api-admin/0daa1670-5c81-11ec-ae75-df2bef173be2-xl@2x.png",
+            secureThumbnail = "https://http2.mlstatic.com/storage/logos-api-admin/0daa1670-5c81-11ec-ae75-df2bef173be2-xl@2x.png",
             status = "active"
         ),
         PaymentMethodResponse(
             id = "visa",
             name = "Visa",
             paymentTypeId = "credit_card",
-            thumbnail = "https://http2.mlstatic.com/storage/logos-api-admin/d589be70-eb86-11e9-b9a8-097ac027487d-xl@2x.png",
+            secureThumbnail = "https://http2.mlstatic.com/storage/logos-api-admin/d589be70-eb86-11e9-b9a8-097ac027487d-xl@2x.png",
             status = "active"
         )
     )
@@ -48,14 +48,14 @@ class GetPaymentMethodsUseCaseMock {
             id = "master",
             name = "Mastercard",
             paymentTypeId = "credit_card",
-            thumbnail = "https://http2.mlstatic.com/storage/logos-api-admin/0daa1670-5c81-11ec-ae75-df2bef173be2-xl@2x.png",
+            secureThumbnail = "https://http2.mlstatic.com/storage/logos-api-admin/0daa1670-5c81-11ec-ae75-df2bef173be2-xl@2x.png",
             status = "inactive"
         ),
         PaymentMethodResponse(
             id = "visa",
             name = "Visa",
             paymentTypeId = "credit_card",
-            thumbnail = "https://http2.mlstatic.com/storage/logos-api-admin/d589be70-eb86-11e9-b9a8-097ac027487d-xl@2x.png",
+            secureThumbnail = "https://http2.mlstatic.com/storage/logos-api-admin/d589be70-eb86-11e9-b9a8-097ac027487d-xl@2x.png",
             status = "active"
         )
     )
@@ -65,14 +65,14 @@ class GetPaymentMethodsUseCaseMock {
             id = "master",
             name = "Mastercard",
             paymentTypeId = "credit_card",
-            thumbnail = "https://http2.mlstatic.com/storage/logos-api-admin/0daa1670-5c81-11ec-ae75-df2bef173be2-xl@2x.png",
-            status = "active"
+            secureThumbnail = "https://http2.mlstatic.com/storage/logos-api-admin/0daa1670-5c81-11ec-ae75-df2bef173be2-xl@2x.png",
+            status = "active",
         ),
         PaymentMethodResponse(
             id = "visa",
             name = "Visa",
             paymentTypeId = "credit_card",
-            thumbnail = "https://http2.mlstatic.com/storage/logos-api-admin/d589be70-eb86-11e9-b9a8-097ac027487d-xl@2x.png",
+            secureThumbnail = "https://http2.mlstatic.com/storage/logos-api-admin/d589be70-eb86-11e9-b9a8-097ac027487d-xl@2x.png",
             status = "active"
         )
     )
