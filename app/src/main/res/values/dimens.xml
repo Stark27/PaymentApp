@@ -5,9 +5,11 @@
     <dimen name="width_0">0dp</dimen>
     <dimen name="width_1">1dp</dimen>
     <dimen name="width_20">20dp</dimen>
+    <dimen name="width_100">100dp</dimen>
     <dimen name="height_0">0dp</dimen>
     <dimen name="height_18">18dp</dimen>
     <dimen name="height_20">20dp</dimen>
+    <dimen name="height_45">45dp</dimen>
     <dimen name="card_elevation">8dp</dimen>
     <dimen name="corner_radius">8dp</dimen>
     <dimen name="item_list_height">60dp</dimen>
@@ -28,5 +30,11 @@
     <dimen name="margin_30">30dp</dimen>
     <dimen name="margin_40">40dp</dimen>
     <dimen name="margin_49">49dp</dimen>
+
+<!--    Text Sizes-->
+    <dimen name="size_10">10sp</dimen>
+    <dimen name="size_16">16sp</dimen>
+    <dimen name="size_18">18sp</dimen>
+    <dimen name="size_24">24sp</dimen>
 
 </resources>

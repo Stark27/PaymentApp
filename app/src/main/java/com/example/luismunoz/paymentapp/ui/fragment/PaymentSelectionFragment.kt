@@ -78,12 +78,13 @@ class PaymentSelectionFragment : Fragment(), ItemOnClickListener {
         })
     }
 
-    override fun onClickItem(position: Int, itemId: String) {
+    override fun onClickItem(position: Int, itemId: String, itemName: String) {
         val amount = args.amount
         val action = PaymentSelectionFragmentDirections
             .actionPaymentSelectionFragmentToBankSelectionFragment(
                 amount = amount,
-                paymentMethodId = itemId
+                paymentMethodId = itemId,
+                paymentMethodName = itemName
             )
 
         findNavController().navigate(action)

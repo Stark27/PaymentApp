@@ -9,4 +9,16 @@
     <string name="text_bank_selection">Selecciona un banco</string>
     <string name="text_generic_error_title">Error</string>
     <string name="text_generic_error_subtitle">Ocurrió un error al obtener la información, por favor, inténtalo nuevamente</string>
+    <string name="text_fee_selection">Selección de cuotas</string>
+    <string name="text_btn_finish_pay">Finalizar pago</string>
+    <string name="text_success_payment_title">Pago exitoso</string>
+    <string name="text_success_payment_subtitle">Pago realizado exitosamente, detalle de la transacción:</string>
+    <string name="textAmountEnteredSummary">Monto ingresado:&#160;</string>
+    <string name="textPaymentMethodSelected">Medio de pago:&#160;</string>
+    <string name="textPaymentBankSelected">Banco:&#160;</string>
+    <string name="textPaymentNumberFeeSelected">Cuotas:&#160;</string>
+    <string name="textPaymentFeeAmount">Valor cuota:&#160;</string>
+    <string name="textPaymentTotalAmount">Monto total:&#160;</string>
+    <string name="textPaymentTransactionId">Id de transacción:\n%1$s</string>
+    <string name="text_accept">Aceptar</string>
 </resources>

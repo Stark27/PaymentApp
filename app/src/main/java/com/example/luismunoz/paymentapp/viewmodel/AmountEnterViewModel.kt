@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.luismunoz.paymentapp.util.MAX_ALLOWED_AMOUNT
+import com.example.luismunoz.paymentapp.util.MIN_ALLOWED_AMOUNT
 import com.example.luismunoz.paymentapp.util.Util
 import com.example.luismunoz.paymentapp.util.ValidateAmountStatus
 
@@ -16,12 +17,10 @@ class AmountEnterViewModel: ViewModel() {
     val amountValidate: LiveData<Event<ValidateAmountStatus>>
     get() = _amountValidate
 
-    fun validateAmountInput(amountValue: String) {
-        if (amountValue.isEmpty()) {
-            _amountValidate.postValue(Event(ValidateAmountStatus.EMPTY_AMOUNT))
-        } else if (Util.isNumberStartWithZero(amountValue)) {
+    fun validateAmountInput(amountValue: Int) {
+        if (amountValue < MIN_ALLOWED_AMOUNT) {
             _amountValidate.postValue(Event(ValidateAmountStatus.MIN_AMOUNT))
-        } else if (amountValue.toInt() > MAX_ALLOWED_AMOUNT) {
+        } else if (amountValue > MAX_ALLOWED_AMOUNT) {
             _amountValidate.postValue(Event(ValidateAmountStatus.MAX_AMOUNT))
         } else {
             _amountValidate.postValue(Event(ValidateAmountStatus.VALID_AMOUNT))

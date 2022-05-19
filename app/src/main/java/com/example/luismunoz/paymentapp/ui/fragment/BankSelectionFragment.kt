@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.luismunoz.paymentapp.R
 import com.example.luismunoz.paymentapp.databinding.FragmentBankSelectionBinding
 import com.example.luismunoz.paymentapp.domain.ItemOnClickListener
 import com.example.luismunoz.paymentapp.domain.Resource
@@ -30,7 +29,9 @@ class BankSelectionFragment : Fragment(), ItemOnClickListener {
     private val viewModel: BankSelectionViewModel by viewModels()
     private lateinit var adapter: BankAdapter
 
+    private lateinit var amountValue: String
     private lateinit var methodPaymentId: String
+    private lateinit var methodPaymentName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +49,9 @@ class BankSelectionFragment : Fragment(), ItemOnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        amountValue = args.amount
         methodPaymentId = args.paymentMethodId
+        methodPaymentName = args.paymentMethodName
 
         initObservers()
         initRecyclerView()
@@ -89,8 +92,17 @@ class BankSelectionFragment : Fragment(), ItemOnClickListener {
 
     }
 
-    override fun onClickItem(position: Int, itemId: String) {
-        findNavController().navigate(R.id.action_bankSelectionFragment_to_feeSelectionFragment)
+    override fun onClickItem(position: Int, itemId: String, itemName: String) {
+        val action = BankSelectionFragmentDirections
+            .actionBankSelectionFragmentToFeeSelectionFragment(
+                amount = amountValue,
+                paymentMethodId = methodPaymentId,
+                issuerId = itemId,
+                paymentMethodName = methodPaymentName,
+                issuerName = itemName
+            )
+
+        findNavController().navigate(action)
     }
 
 }

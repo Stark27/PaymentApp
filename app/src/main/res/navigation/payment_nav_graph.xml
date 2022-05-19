@@ -40,10 +40,44 @@
         <argument
             android:name="paymentMethodId"
             app:argType="string" />
+        <argument
+            android:name="paymentMethodName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/feeSelectionFragment"
         android:name="com.example.luismunoz.paymentapp.ui.fragment.FeeSelectionFragment"
         android:label="Cuotas"
-        tools:layout="@layout/fragment_fee_selection" />
+        tools:layout="@layout/fragment_fee_selection" >
+        <argument
+            android:name="amount"
+            app:argType="string" />
+        <argument
+            android:name="paymentMethodId"
+            app:argType="string" />
+        <argument
+            android:name="issuerId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_feeSelectionFragment_to_successDialog"
+            app:destination="@id/successDialog" />
+        <argument
+            android:name="paymentMethodName"
+            app:argType="string" />
+        <argument
+            android:name="issuerName"
+            app:argType="string" />
+    </fragment>
+    <dialog
+        android:id="@+id/successDialog"
+        android:name="com.example.luismunoz.paymentapp.ui.dialog.SuccessDialog"
+        android:label="fragment_success_dialog"
+        tools:layout="@layout/fragment_success_dialog" >
+        <action
+            android:id="@+id/action_successDialog_to_amountEnterFragment"
+            app:destination="@id/amountEnterFragment" />
+        <argument
+            android:name="summary"
+            app:argType="com.example.luismunoz.paymentapp.domain.model.DataSummary" />
+    </dialog>
 </navigation>

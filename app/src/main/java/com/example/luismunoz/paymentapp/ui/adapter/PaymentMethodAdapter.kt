@@ -46,7 +46,7 @@ class PaymentMethodAdapter(
         fun bind(paymentMethod: DataPaymentMethod, position: Int) {
             Glide.with(context).load(paymentMethod.paymentMethodPath).into(binding.imgItemPaymentMethodIcon)
             binding.tvItemPaymentMethodName.text = paymentMethod.paymentMethodName
-            binding.cvItemPaymentMethodContainer.setOnClickListener { itemOnClick.onClickItem(position, paymentMethod.paymentMethodId) }
+            binding.cvItemPaymentMethodContainer.setOnClickListener { itemOnClick.onClickItem(position, paymentMethod.paymentMethodId, paymentMethod.paymentMethodName) }
         }
     }
 

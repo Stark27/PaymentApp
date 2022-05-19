@@ -46,7 +46,7 @@ class BankAdapter(
         fun bind(dataBank: DataBank, position: Int) {
             Glide.with(context).load(dataBank.bankPath).into(binding.imgItemBankIcon)
             binding.tvItemBankName.text = dataBank.bankName
-            binding.cvItemBankContainer.setOnClickListener { itemOnClick.onClickItem(position, dataBank.bankId) }
+            binding.cvItemBankContainer.setOnClickListener { itemOnClick.onClickItem(position, dataBank.bankId, dataBank.bankName) }
         }
     }
 

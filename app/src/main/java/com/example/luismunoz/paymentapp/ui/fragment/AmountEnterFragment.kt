@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.luismunoz.paymentapp.R
 import com.example.luismunoz.paymentapp.databinding.FragmentAmountEnterBinding
-import com.example.luismunoz.paymentapp.util.ValidateAmountStatus
+import com.example.luismunoz.paymentapp.util.*
 import com.example.luismunoz.paymentapp.viewmodel.AmountEnterViewModel
 
 /**
@@ -41,8 +41,14 @@ class AmountEnterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViews()
         initObservers()
         initListeners()
+    }
+
+    private fun initViews() {
+        val amountFormat = Util.currencyFormat(ZERO_AMOUNT)
+        binding.edAmountEnterFragmentValue.setText(amountFormat)
     }
 
     /**
@@ -82,18 +88,23 @@ class AmountEnterFragment : Fragment() {
         binding.edAmountEnterFragmentValue.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val amountValue = binding.edAmountEnterFragmentValue.text.toString()
-                viewModel.validateAmountInput(amountValue)
+                val cleanedAmount = Util.cleanAmount(amountValue).toInt()
+                viewModel.validateAmountInput(cleanedAmount)
             }
             false
         }
 
         binding.btnAmountEnterFragmentGoToPaymentMethod.setOnClickListener {
             val amountValue = binding.edAmountEnterFragmentValue.text.toString()
-            val action = AmountEnterFragmentDirections.actionAmountEnterFragmentToPaymentSelectionFragment(amount = amountValue)
+            val cleanedAmount = Util.cleanAmount(amountValue)
+            val action = AmountEnterFragmentDirections.actionAmountEnterFragmentToPaymentSelectionFragment(amount = cleanedAmount)
             findNavController().navigate(action)
         }
     }
 
+    /**
+     *  Watcher that validate amount that user is typing
+     */
     private val validateTextAmount = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             // No implemented method
@@ -103,8 +114,24 @@ class AmountEnterFragment : Fragment() {
             // No implemented method
         }
 
-        override fun afterTextChanged(amount: Editable?) {
-            viewModel.validateAmountInput(amountValue = amount.toString())
+        override fun afterTextChanged(s: Editable?) {
+            val amountString = s.toString()
+            val cleanedAmount: Int
+            binding.edAmountEnterFragmentValue.removeTextChangedListener(this)
+
+            if (amountString.isNotEmpty() && amountString.length > MIN_AMOUNT_LENGTH) {
+                cleanedAmount = Util.cleanAmount(amountString).toInt()
+                val amountFormat = Util.currencyFormat(cleanedAmount)
+                binding.edAmountEnterFragmentValue.setText(amountFormat)
+            } else {
+                cleanedAmount = Util.cleanAmount(ZERO_STRING).toInt()
+                val amountFormat = Util.currencyFormat(ZERO_AMOUNT)
+                binding.edAmountEnterFragmentValue.setText(amountFormat)
+            }
+
+            binding.edAmountEnterFragmentValue.setSelection(binding.edAmountEnterFragmentValue.length())
+            binding.edAmountEnterFragmentValue.addTextChangedListener(this)
+            viewModel.validateAmountInput(amountValue = cleanedAmount)
         }
     }
 

@@ -2,6 +2,7 @@ package com.example.luismunoz.paymentapp.di
 
 import com.example.luismunoz.paymentapp.BuildConfig
 import com.example.luismunoz.paymentapp.data.source.remote.retrofit.BankService
+import com.example.luismunoz.paymentapp.data.source.remote.retrofit.FeeService
 import com.example.luismunoz.paymentapp.data.source.remote.retrofit.PaymentMethodService
 import dagger.Module
 import dagger.Provides
@@ -49,6 +50,12 @@ object NetworkModule {
     @Provides
     fun provideBankService(retrofit: Retrofit): BankService {
         return retrofit.create(BankService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideFeeService(retrofit: Retrofit): FeeService {
+        return retrofit.create(FeeService::class.java)
     }
 
 }
