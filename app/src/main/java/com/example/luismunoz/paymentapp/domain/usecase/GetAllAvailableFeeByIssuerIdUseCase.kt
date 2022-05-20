@@ -44,6 +44,11 @@ class GetAllAvailableFeeByIssuerIdUseCase @Inject constructor(private val reposi
         }
     }
 
+    /**
+     *  Receive all fee avaibles from remote repository and returns a MutableList<DataFee>
+     *
+     *  [remoteFees] list with all fee availables
+     */
     private fun processRemoteData(remoteFees: List<FeeResponse>): MutableList<DataFee> {
         val dataFees = mutableListOf<DataFee>()
         val remoteFee = remoteFees.first()

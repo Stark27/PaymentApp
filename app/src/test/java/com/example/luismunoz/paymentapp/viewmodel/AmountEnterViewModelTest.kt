@@ -39,7 +39,7 @@ class AmountEnterViewModelTest {
     fun `GIVEN a different than 0 amount value WHEN AmountEnterViewModel is called THEN return VALID_AMOUNT status`() = runTest {
 
         // Given
-        val amountStringValue = "1500"
+        val amountStringValue = 1500
 
         // When
         amountEnterViewModel.validateAmountInput(amountStringValue)
@@ -50,31 +50,31 @@ class AmountEnterViewModelTest {
     }
 
     @Test
-    fun `GIVEN a 0 amount value WHEN AmountEnterViewModel is called THEN return ZERO_AMOUNT status`() {
+    fun `GIVEN a 1500001 amount value WHEN AmountEnterViewModel is called THEN return MAX_AMOUNT status`() {
 
         // Given
-        val amountStringValue = "0"
+        val amountStringValue = 1500001
 
         // When
         amountEnterViewModel.validateAmountInput(amountStringValue)
 
         // Then
         val statusResponse = amountEnterViewModel.amountValidate.value?.getContentIfNotHandled()
-        assertThat(statusResponse).isEqualTo(ValidateAmountStatus.ZERO_AMOUNT)
+        assertThat(statusResponse).isEqualTo(ValidateAmountStatus.MAX_AMOUNT)
     }
 
     @Test
-    fun `GIVEN an empty amount value WHEN AmountEnterViewModel is called THEN return EMPTY_AMOUNT status`() {
+    fun `GIVEN a 0 amount value WHEN AmountEnterViewModel is called THEN return MIN_AMOUNT status`() {
 
         // Given
-        val amountStringValue = EMPTY_STRING_VALUE
+        val amountStringValue = 0
 
         // When
         amountEnterViewModel.validateAmountInput(amountStringValue)
 
         // Then
         val statusResponse = amountEnterViewModel.amountValidate.value?.getContentIfNotHandled()
-        assertThat(statusResponse).isEqualTo(ValidateAmountStatus.EMPTY_AMOUNT)
+        assertThat(statusResponse).isEqualTo(ValidateAmountStatus.MIN_AMOUNT)
     }
 
 }

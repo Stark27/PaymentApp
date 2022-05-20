@@ -7,6 +7,9 @@ import com.example.luismunoz.paymentapp.domain.usecase.GetAllAvailableFeeByIssue
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+/**
+ *  ViewModel that call to the remote repository and get all available fee
+ */
 @HiltViewModel
 class FeeSelectionViewModel @Inject constructor(private val useCase: GetAllAvailableFeeByIssuerIdUseCase): ViewModel() {
 

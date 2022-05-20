@@ -29,7 +29,6 @@
             android:maxLength="10"
             tools:text="$1.500.000"
             android:imeOptions="actionDone"/>
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
