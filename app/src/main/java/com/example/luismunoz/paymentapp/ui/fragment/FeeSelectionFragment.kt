@@ -21,6 +21,9 @@ import com.example.luismunoz.paymentapp.util.ITEM_SELECTED_KEY
 import com.example.luismunoz.paymentapp.viewmodel.FeeSelectionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ *  Fragment that manage and show design to fee selection
+ */
 @AndroidEntryPoint
 class FeeSelectionFragment : Fragment() {
 
