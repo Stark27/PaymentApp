@@ -99,6 +99,8 @@
 
         <include layout="@layout/generic_error_layout"
             android:id="@+id/error_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/glFeeSelectionFragmentBegin"
             app:layout_constraintTop_toBottomOf="@+id/tvFeeSelectionFragmentTitle"
