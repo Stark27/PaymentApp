@@ -8,20 +8,31 @@
         android:id="@+id/flFeeSelectionFragmentFeeContainer"
         android:layout_width="@dimen/width_100"
         android:layout_height="@dimen/height_45"
-        android:background="#C8C8C9"
+        android:background="@color/loading_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <FrameLayout
+        android:id="@+id/flFeeSelectionFragmentMessage"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_16"
         android:textSize="@dimen/size_16"
-        android:background="#C8C8C9"
+        android:background="@color/loading_color"
         android:layout_marginHorizontal="@dimen/margin_40"
         android:layout_marginTop="@dimen/margin_20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flFeeSelectionFragmentFeeContainer"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/flFeeSelectionFragmentButton"
+        android:layout_width="150dp"
+        android:layout_height="@dimen/height_45"
+        android:layout_marginTop="@dimen/margin_30"
+        android:background="@color/loading_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flFeeSelectionFragmentMessage"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

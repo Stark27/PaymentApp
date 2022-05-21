@@ -105,4 +105,9 @@ class BankSelectionFragment : Fragment(), ItemOnClickListener {
         findNavController().navigate(action)
     }
 
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
+
 }

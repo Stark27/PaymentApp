@@ -12,6 +12,9 @@ import com.example.luismunoz.paymentapp.R
 import com.example.luismunoz.paymentapp.databinding.FragmentSuccessDialogBinding
 import com.example.luismunoz.paymentapp.util.Util
 
+/**
+ *  Dialog that show a summary report with all values getting in previous steps
+ */
 class SuccessDialog : DialogFragment() {
 
     private var _binding: FragmentSuccessDialogBinding? = null
@@ -55,12 +58,14 @@ class SuccessDialog : DialogFragment() {
 
     private fun initListeners() {
         binding.btnSuccessDialogFragmentAccept.setOnClickListener {
-            findNavController().popBackStack(R.id.amountEnterFragment, false)
+            findNavController().navigate(R.id.action_successDialog_to_amountEnterFragment)
         }
     }
 
     override fun onStart() {
         super.onStart()
+        dialog?.setCancelable(false)
+
         dialog?.window?.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT

@@ -42,8 +42,8 @@ class AmountEnterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initViews()
-        initObservers()
         initListeners()
+        initObservers()
     }
 
     private fun initViews() {
@@ -58,10 +58,6 @@ class AmountEnterFragment : Fragment() {
         viewModel.amountValidate.observe(viewLifecycleOwner, Observer {
             it.getContentIfNotHandled()?.let { result ->
                 when(result) {
-                    ValidateAmountStatus.EMPTY_AMOUNT -> {
-                        binding.tilAmountEnterFragmentAmountContainer.error = getString(R.string.text_add_amount_error)
-                        binding.btnAmountEnterFragmentGoToPaymentMethod.isEnabled = false
-                    }
                     ValidateAmountStatus.MIN_AMOUNT -> {
                         binding.tilAmountEnterFragmentAmountContainer.error = getString(R.string.text_add_amount_different_to_zero)
                         binding.btnAmountEnterFragmentGoToPaymentMethod.isEnabled = false
@@ -89,7 +85,7 @@ class AmountEnterFragment : Fragment() {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val amountValue = binding.edAmountEnterFragmentValue.text.toString()
                 val cleanedAmount = Util.cleanAmount(amountValue).toInt()
-                viewModel.validateAmountInput(cleanedAmount)
+                viewModel.validateAmountInput(amountValue = cleanedAmount)
             }
             false
         }
@@ -124,8 +120,8 @@ class AmountEnterFragment : Fragment() {
                 val amountFormat = Util.currencyFormat(cleanedAmount)
                 binding.edAmountEnterFragmentValue.setText(amountFormat)
             } else {
-                cleanedAmount = Util.cleanAmount(ZERO_STRING).toInt()
                 val amountFormat = Util.currencyFormat(ZERO_AMOUNT)
+                cleanedAmount = ZERO_AMOUNT
                 binding.edAmountEnterFragmentValue.setText(amountFormat)
             }
 
@@ -135,4 +131,8 @@ class AmountEnterFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
 }

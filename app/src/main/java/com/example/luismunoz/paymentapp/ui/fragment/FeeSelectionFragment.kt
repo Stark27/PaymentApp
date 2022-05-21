@@ -104,15 +104,15 @@ class FeeSelectionFragment : Fragment() {
             when(result) {
                 is Resource.Loading -> {
                     binding.sflFeeSelectionFragmentContentContainer.visibility = View.VISIBLE
-                    binding.llFeeSelectionFragmentContentContainer.visibility =  View.INVISIBLE
-                    binding.btnFeeSelectionFragmentFinishPay.isEnabled = false
+                    binding.llFeeSelectionFragmentContentContainer.visibility =  View.GONE
                     binding.errorContainer.clGenericErrorLayoutContainer.visibility = View.GONE
+                    binding.btnFeeSelectionFragmentFinishPay.isEnabled = false
                 }
                 is Resource.Success -> {
                     binding.sflFeeSelectionFragmentContentContainer.visibility = View.GONE
                     binding.llFeeSelectionFragmentContentContainer.visibility =  View.VISIBLE
-                    binding.btnFeeSelectionFragmentFinishPay.isEnabled = true
                     binding.errorContainer.clGenericErrorLayoutContainer.visibility = View.GONE
+                    binding.btnFeeSelectionFragmentFinishPay.isEnabled = true
 
                     spinner = binding.spnFeeSelectionFragmentList
                     adapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, result.data)
@@ -126,6 +126,11 @@ class FeeSelectionFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
 }
