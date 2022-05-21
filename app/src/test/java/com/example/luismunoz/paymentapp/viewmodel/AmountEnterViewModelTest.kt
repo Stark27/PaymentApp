@@ -1,7 +1,6 @@
 package com.example.luismunoz.paymentapp.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.luismunoz.paymentapp.util.EMPTY_STRING_VALUE
 import com.example.luismunoz.paymentapp.util.ValidateAmountStatus
 import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
