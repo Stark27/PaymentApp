@@ -17,6 +17,7 @@ import com.example.luismunoz.paymentapp.databinding.FragmentFeeSelectionBinding
 import com.example.luismunoz.paymentapp.domain.Resource
 import com.example.luismunoz.paymentapp.domain.model.DataFee
 import com.example.luismunoz.paymentapp.domain.model.DataSummary
+import com.example.luismunoz.paymentapp.util.ITEM_SELECTED_KEY
 import com.example.luismunoz.paymentapp.viewmodel.FeeSelectionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,6 +34,7 @@ class FeeSelectionFragment : Fragment() {
     private lateinit var amountValue: String
     private lateinit var paymentMethodName: String
     private lateinit var bankName:  String
+    private var itemSelected: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +64,7 @@ class FeeSelectionFragment : Fragment() {
     private fun initListeners() {
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                itemSelected = position
                 val data: DataFee = spinner.selectedItem as DataFee
                 binding.tvFeeSelectionFragmentRecommendedMessageTest.text = data.message
             }
@@ -117,6 +120,7 @@ class FeeSelectionFragment : Fragment() {
                     spinner = binding.spnFeeSelectionFragmentList
                     adapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, result.data)
                     spinner.adapter = adapter
+                    spinner.setSelection(itemSelected)
                 }
                 is Resource.Error -> {
                     binding.sflFeeSelectionFragmentContentContainer.visibility = View.GONE
@@ -126,6 +130,19 @@ class FeeSelectionFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(ITEM_SELECTED_KEY, itemSelected)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        if (savedInstanceState != null) {
+            itemSelected = savedInstanceState.getInt(ITEM_SELECTED_KEY)
+        }
     }
 
     override fun onDestroyView() {

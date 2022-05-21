@@ -2,7 +2,6 @@ package com.example.luismunoz.paymentapp.util
 
 import java.text.DecimalFormat
 
-const val EMPTY_STRING_VALUE = ""
 const val CREDIT_CARD_PAYMENT_TYPE = "credit_card"
 const val METHOD_PAYMENT_ACTIVE = "active"
 const val BANK_ACTIVE = "active"
@@ -15,3 +14,4 @@ val NUMBER_FORMAT = DecimalFormat("#,###")
 val NUMBER_FORMAT_DECIMAL = DecimalFormat("#,###.##")
 const val MIN_AMOUNT_LENGTH = 1
 const val ZERO_STRING = "0"
+const val ITEM_SELECTED_KEY = "ITEM_SELECTED"
