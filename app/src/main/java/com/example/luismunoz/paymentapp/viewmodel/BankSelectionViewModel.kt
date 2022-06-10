@@ -1,9 +1,6 @@
 package com.example.luismunoz.paymentapp.viewmodel
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import com.example.luismunoz.paymentapp.domain.Resource
 import com.example.luismunoz.paymentapp.domain.usecase.GetAllBanksByPaymentMethodIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,24 +10,22 @@ import javax.inject.Inject
  *  ViewModel that call to the remote repository and get all banks by method payment
  */
 @HiltViewModel
-class BankSelectionViewModel @Inject constructor(private val useCase: GetAllBanksByPaymentMethodIdUseCase): ViewModel() {
+class BankSelectionViewModel @Inject constructor(private val useCase: GetAllBanksByPaymentMethodIdUseCase) : ViewModel() {
 
-    private var _paymentMethodId = MutableLiveData<String>()
+    private lateinit var _paymentMethodId: String
 
     fun getAllBanks(paymentMethodId: String) {
-        _paymentMethodId.value = paymentMethodId
+        _paymentMethodId = paymentMethodId
     }
 
-    var bankObserver = Transformations.switchMap(_paymentMethodId) { paymentMethod ->
-        liveData {
-            emit(Resource.Loading)
+    var bankObserver = liveData {
+        emit(Resource.Loading)
 
-            try {
-                val response = useCase.getAllBanksByPaymentMethodId(paymentMethodId = paymentMethod)
-                emit(response)
-            } catch (e: Exception) {
-                emit(Resource.Error(e))
-            }
+        try {
+            val response = useCase.getAllBanksByPaymentMethodId(paymentMethodId = _paymentMethodId)
+            emit(response)
+        } catch (e: Exception) {
+            emit(Resource.Error(e))
         }
     }
 

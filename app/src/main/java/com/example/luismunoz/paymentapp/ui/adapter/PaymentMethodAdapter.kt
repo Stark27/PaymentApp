@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.luismunoz.paymentapp.R
 import com.example.luismunoz.paymentapp.databinding.ItemPaymentMethodListBinding
 import com.example.luismunoz.paymentapp.domain.ItemOnClickListener
-import com.example.luismunoz.paymentapp.domain.model.DataPaymentMethod
+import com.example.luismunoz.paymentapp.domain.model.paymentMethod.DataPaymentMethod
 
 /**
  *  Adapter that handle a payment methods list

@@ -4,7 +4,8 @@ import com.example.luismunoz.paymentapp.data.exception.ServiceException
 import com.example.luismunoz.paymentapp.data.source.remote.BankSelectionRepositoryImpl
 import com.example.luismunoz.paymentapp.data.source.remote.response.bank.BankResponse
 import com.example.luismunoz.paymentapp.domain.Resource
-import com.example.luismunoz.paymentapp.domain.model.DataBank
+import com.example.luismunoz.paymentapp.domain.model.bank.DataBank
+import com.example.luismunoz.paymentapp.domain.model.bank.fromDomainToUi
 import com.example.luismunoz.paymentapp.util.BANK_ACTIVE
 import javax.inject.Inject
 
@@ -47,21 +48,13 @@ class GetAllBanksByPaymentMethodIdUseCase @Inject constructor(private val reposi
     private fun processRemoteData(remoteBanks: List<BankResponse>): MutableList<DataBank> {
         val banks = mutableListOf<DataBank>()
 
-        remoteBanks.forEach { bank ->
-            if (bank.status.equals(BANK_ACTIVE)
-                && !bank.id.isNullOrEmpty()
-                && !bank.name.isNullOrEmpty()
-                && !bank.secureThumbnail.isNullOrEmpty()
-            ) {
-
-                banks.add(
-                    DataBank(
-                        bankId = bank.id,
-                        bankName = bank.name,
-                        bankPath = bank.secureThumbnail
-                    )
-                )
-            }
+        remoteBanks.filter {
+            it.status == BANK_ACTIVE
+                    && it.id.isNotEmpty()
+                    && it.name.isNotEmpty()
+                    && it.secureThumbnail.isNotEmpty()
+        }.map { bank ->
+            banks.add(bank.fromDomainToUi())
         }
 
         return banks

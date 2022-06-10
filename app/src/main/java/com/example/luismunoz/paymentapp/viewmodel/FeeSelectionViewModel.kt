@@ -13,11 +13,34 @@ import javax.inject.Inject
 @HiltViewModel
 class FeeSelectionViewModel @Inject constructor(private val useCase: GetAllAvailableFeeByIssuerIdUseCase): ViewModel() {
 
-    fun getAllFeeObserver(amountValue: String, paymentMethodId: String, issuerId: String) = liveData {
+    private lateinit var _amountValue: String
+    private lateinit var _paymentMethodId: String
+    private lateinit var _issuerId: String
+
+    private var _feeSelected = 0
+    val feeSelected: Int
+    get() = _feeSelected
+
+    fun setFeeSelected(feeSelected: Int) {
+        _feeSelected = feeSelected
+    }
+
+    fun getAllFee(amountValue: String, paymentMethodId: String, issuerId: String) {
+        _amountValue = amountValue
+        _paymentMethodId = paymentMethodId
+        _issuerId = issuerId
+    }
+
+    val getAllFeeObserver = liveData {
         emit(Resource.Loading)
 
         try {
-            val response = useCase.getAllAvailableFeeByIssuerId(amountValue = amountValue, paymentMethodId = paymentMethodId, issuerId = issuerId)
+            val response = useCase
+                .getAllAvailableFeeByIssuerId(
+                    amountValue = _amountValue,
+                    paymentMethodId = _paymentMethodId,
+                    issuerId = _issuerId
+                )
             emit(response)
         } catch (e: Exception) {
             emit(Resource.Error(e))

@@ -2,7 +2,7 @@ package com.example.luismunoz.paymentapp.domain.usecase.mock
 
 import com.example.luismunoz.paymentapp.data.source.remote.response.fee.FeeResponse
 import com.example.luismunoz.paymentapp.data.source.remote.response.fee.PayerCostsItem
-import com.example.luismunoz.paymentapp.domain.model.DataFee
+import com.example.luismunoz.paymentapp.domain.model.fee.DataFee
 
 class GetAllAvailableFeeByIssuerIdUseCaseMock {
 
@@ -37,11 +37,11 @@ class GetAllAvailableFeeByIssuerIdUseCaseMock {
         FeeResponse(
             payerCosts = arrayListOf(
                 PayerCostsItem(
-                    installments = null,
+                    installments = 1,
                     recommendedMessage = "1 cuota de $ 15.000,00 ($ 15.000,00)",
                     paymentMethodOptionId = "1.AQokODllZjQyNjktYjAzMy00OWU1LWJhMWQtNDE0NjQyNTM3MzY4EJaFuevHLg",
                     totalAmount = 15000.0,
-                    installmentAmount = 15000.0
+                    installmentAmount = 15000.0,
                 ),
                 PayerCostsItem(
                     installments = 3,

@@ -1,6 +1,6 @@
 package com.example.luismunoz.paymentapp.viewmodel.mock
 
-import com.example.luismunoz.paymentapp.domain.model.DataPaymentMethod
+import com.example.luismunoz.paymentapp.domain.model.paymentMethod.DataPaymentMethod
 
 class PaymentSelectionViewModelMock {
 

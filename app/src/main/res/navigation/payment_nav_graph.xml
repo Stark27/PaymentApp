@@ -100,6 +100,6 @@
             app:popUpToInclusive="true"/>
         <argument
             android:name="summary"
-            app:argType="com.example.luismunoz.paymentapp.domain.model.DataSummary" />
+            app:argType="com.example.luismunoz.paymentapp.domain.model.summary.DataSummary" />
     </dialog>
 </navigation>

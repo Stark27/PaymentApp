@@ -5,19 +5,19 @@ import com.google.gson.annotations.SerializedName
 data class PayerCostsItem(
 
 	@SerializedName("installments")
-	val installments: Int? = null,
+	val installments: Int,
 
 	@SerializedName("installment_amount")
-	val installmentAmount: Double? = null,
+	val installmentAmount: Double,
 
 	@SerializedName("total_amount")
-	val totalAmount: Double? = null,
+	val totalAmount: Double,
 
 	@SerializedName("payment_method_option_id")
-	val paymentMethodOptionId: String? = null,
+	val paymentMethodOptionId: String,
 
 	@SerializedName("recommended_message")
-	val recommendedMessage: String? = null,
+	val recommendedMessage: String,
 
 	@SerializedName("reimbursement_rate")
 	val reimbursementRate: Any? = null,

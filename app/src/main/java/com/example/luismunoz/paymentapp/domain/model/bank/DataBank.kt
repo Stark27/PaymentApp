@@ -1,4 +1,4 @@
-package com.example.luismunoz.paymentapp.domain.model
+package com.example.luismunoz.paymentapp.domain.model.bank
 
 data class DataBank(
     val bankId: String,

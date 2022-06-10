@@ -8,7 +8,7 @@ data class FeeResponse(
 	val paymentMethodId: String? = null,
 
 	@SerializedName("payer_costs")
-	val payerCosts: List<PayerCostsItem?>? = null,
+	val payerCosts: List<PayerCostsItem>,
 
 	@SerializedName("merchant_account_id")
 	val merchantAccountId: Any? = null,

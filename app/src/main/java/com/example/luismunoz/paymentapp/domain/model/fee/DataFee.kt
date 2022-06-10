@@ -1,4 +1,4 @@
-package com.example.luismunoz.paymentapp.domain.model
+package com.example.luismunoz.paymentapp.domain.model.fee
 
 data class DataFee(
     val numberFee: Int,

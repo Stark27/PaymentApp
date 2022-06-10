@@ -4,7 +4,8 @@ import com.example.luismunoz.paymentapp.data.exception.ServiceException
 import com.example.luismunoz.paymentapp.data.source.remote.FeeSelectionRepositoryImpl
 import com.example.luismunoz.paymentapp.data.source.remote.response.fee.FeeResponse
 import com.example.luismunoz.paymentapp.domain.Resource
-import com.example.luismunoz.paymentapp.domain.model.DataFee
+import com.example.luismunoz.paymentapp.domain.model.fee.DataFee
+import com.example.luismunoz.paymentapp.domain.model.fee.fromDomainToUi
 import javax.inject.Inject
 
 /**
@@ -45,31 +46,19 @@ class GetAllAvailableFeeByIssuerIdUseCase @Inject constructor(private val reposi
     }
 
     /**
-     *  Receive all fee avaibles from remote repository and returns a MutableList<DataFee>
+     *  Receive all fee avaible from remote repository and returns a MutableList<DataFee>
      *
-     *  [remoteFees] list with all fee availables
+     *  [remoteFees] list with all fee available
      */
     private fun processRemoteData(remoteFees: List<FeeResponse>): MutableList<DataFee> {
         val dataFees = mutableListOf<DataFee>()
-        val remoteFee = remoteFees.first()
 
-        remoteFee.payerCosts?.forEach { payerCost ->
-            if (payerCost?.installments != null
-                && !payerCost.recommendedMessage.isNullOrEmpty()
-                && !payerCost.paymentMethodOptionId.isNullOrEmpty()
-                && payerCost.totalAmount != null
-                && payerCost.installmentAmount != null) {
-
-                dataFees.add(
-                    DataFee(
-                        numberFee = payerCost.installments,
-                        message = payerCost.recommendedMessage,
-                        paymentMethodOptionId = payerCost.paymentMethodOptionId,
-                        totalAmount = payerCost.totalAmount,
-                        feeAmount = payerCost.installmentAmount
-                    )
-                )
-            }
+        remoteFees.first().payerCosts.filter {
+            it.installments > 0
+                    && it.recommendedMessage.isNotEmpty()
+                    && it.paymentMethodOptionId.isNotEmpty()
+        }.map { payerCost ->
+            dataFees.add(payerCost.fromDomainToUi())
         }
 
         return dataFees

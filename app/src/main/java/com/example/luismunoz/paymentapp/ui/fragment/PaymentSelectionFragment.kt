@@ -56,7 +56,7 @@ class PaymentSelectionFragment : Fragment(), ItemOnClickListener {
     }
 
     private fun initObservers() {
-        viewModel.paymentMethodObserver().observe(viewLifecycleOwner, Observer { result ->
+        viewModel.paymentMethodObserver.observe(viewLifecycleOwner, Observer { result ->
             when(result) {
                 is Resource.Loading -> {
                     binding.rvPaymentSelectionContainer.visibility = View.GONE

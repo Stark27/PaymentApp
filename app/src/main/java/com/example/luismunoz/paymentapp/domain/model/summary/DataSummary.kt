@@ -1,4 +1,4 @@
-package com.example.luismunoz.paymentapp.domain.model
+package com.example.luismunoz.paymentapp.domain.model.summary
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.luismunoz.paymentapp.R
 import com.example.luismunoz.paymentapp.databinding.ItemBankListBinding
 import com.example.luismunoz.paymentapp.domain.ItemOnClickListener
-import com.example.luismunoz.paymentapp.domain.model.DataBank
+import com.example.luismunoz.paymentapp.domain.model.bank.DataBank
 
 /**
  *  Adapter that handle a bank list

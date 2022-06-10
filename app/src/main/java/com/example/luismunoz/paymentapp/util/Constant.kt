@@ -15,3 +15,4 @@ val NUMBER_FORMAT_DECIMAL = DecimalFormat("#,###.##")
 const val MIN_AMOUNT_LENGTH = 1
 const val ZERO_STRING = "0"
 const val ITEM_SELECTED_KEY = "ITEM_SELECTED"
+const val EMPTY_STRING_VALUE = ""

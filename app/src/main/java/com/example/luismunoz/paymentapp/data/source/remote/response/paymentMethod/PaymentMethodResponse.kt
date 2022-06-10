@@ -17,7 +17,7 @@ data class PaymentMethodResponse(
 	val deferredCapture: String? = null,
 
 	@SerializedName("secure_thumbnail")
-	val secureThumbnail: String? = null,
+	val secureThumbnail: String,
 
 	@SerializedName("min_allowed_amount")
 	val minAllowedAmount: Int? = null,
@@ -26,19 +26,19 @@ data class PaymentMethodResponse(
 	val processingModes: List<String?>? = null,
 
 	@SerializedName("name")
-	val name: String? = null,
+	val name: String,
 
 	@SerializedName("id")
-	val id: String? = null,
+	val id: String,
 
 	@SerializedName("additional_info_needed")
 	val additionalInfoNeeded: List<String?>? = null,
 
 	@SerializedName("payment_type_id")
-	val paymentTypeId: String? = null,
+	val paymentTypeId: String,
 
 	@SerializedName("status")
-	val status: String? = null,
+	val status: String,
 
 	@SerializedName("max_allowed_amount")
 	val maxAllowedAmount: Int? = null,

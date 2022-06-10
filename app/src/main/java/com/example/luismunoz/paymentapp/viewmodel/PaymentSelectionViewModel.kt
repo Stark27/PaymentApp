@@ -1,7 +1,6 @@
 package com.example.luismunoz.paymentapp.viewmodel
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import com.example.luismunoz.paymentapp.domain.Resource
 import com.example.luismunoz.paymentapp.domain.usecase.GetPaymentMethodsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,15 +15,15 @@ class PaymentSelectionViewModel @Inject constructor(private val useCase: GetPaym
     /**
      * Observer that emit a success or error response given by repository response
      */
-    fun paymentMethodObserver() = liveData {
-            emit(Resource.Loading)
+    val paymentMethodObserver = liveData {
+        emit(Resource.Loading)
 
-            try {
-                val response = useCase.getAllRemotePaymentMethod()
-                emit(response)
-            } catch (e: Exception) {
-                emit(Resource.Error(e))
-            }
+        try {
+            val response = useCase.getAllRemotePaymentMethod()
+            emit(response)
+        } catch (e: Exception) {
+            emit(Resource.Error(e))
         }
+    }
 
 }

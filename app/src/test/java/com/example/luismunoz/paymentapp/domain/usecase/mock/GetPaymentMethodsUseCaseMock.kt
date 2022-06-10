@@ -1,7 +1,7 @@
 package com.example.luismunoz.paymentapp.domain.usecase.mock
 
 import com.example.luismunoz.paymentapp.data.source.remote.response.paymentMethod.PaymentMethodResponse
-import com.example.luismunoz.paymentapp.domain.model.DataPaymentMethod
+import com.example.luismunoz.paymentapp.domain.model.paymentMethod.DataPaymentMethod
 
 class GetPaymentMethodsUseCaseMock {
 

@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 data class SettingsItem(
 
 	@SerializedName("security_code")
-	val securityCode: SecurityCode? = null,
+	val securityCode: SecurityCode,
 
 	@SerializedName("card_number")
-	val cardNumber: CardNumber? = null,
+	val cardNumber: CardNumber,
 
 	@SerializedName("bin")
-	val bin: Bin? = null
+	val bin: Bin
 )

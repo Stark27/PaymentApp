@@ -4,7 +4,8 @@ import com.example.luismunoz.paymentapp.data.exception.ServiceException
 import com.example.luismunoz.paymentapp.data.source.remote.PaymentSelectionRepositoryImpl
 import com.example.luismunoz.paymentapp.data.source.remote.response.paymentMethod.PaymentMethodResponse
 import com.example.luismunoz.paymentapp.domain.Resource
-import com.example.luismunoz.paymentapp.domain.model.DataPaymentMethod
+import com.example.luismunoz.paymentapp.domain.model.paymentMethod.DataPaymentMethod
+import com.example.luismunoz.paymentapp.domain.model.paymentMethod.fromDomainToUi
 import com.example.luismunoz.paymentapp.util.CREDIT_CARD_PAYMENT_TYPE
 import com.example.luismunoz.paymentapp.util.METHOD_PAYMENT_ACTIVE
 import javax.inject.Inject
@@ -47,23 +48,14 @@ class GetPaymentMethodsUseCase @Inject constructor(private val repository: Payme
     private fun processRemoteData(paymentMethods: List<PaymentMethodResponse>?): MutableList<DataPaymentMethod> {
         val creditCardPayments = mutableListOf<DataPaymentMethod>()
 
-        paymentMethods?.forEach { paymentMethod ->
-            if (paymentMethod.paymentTypeId.equals(CREDIT_CARD_PAYMENT_TYPE)) {
-                if (paymentMethod.status.equals(METHOD_PAYMENT_ACTIVE)
-                    && !paymentMethod.id.isNullOrEmpty()
-                    && !paymentMethod.name.isNullOrEmpty()
-                    && !paymentMethod.secureThumbnail.isNullOrEmpty()
-                ) {
-
-                    creditCardPayments.add(
-                        DataPaymentMethod(
-                            paymentMethodId = paymentMethod.id,
-                            paymentMethodName = paymentMethod.name,
-                            paymentMethodPath = paymentMethod.secureThumbnail
-                        )
-                    )
-                }
-            }
+        paymentMethods?.filter {
+            it.paymentTypeId == CREDIT_CARD_PAYMENT_TYPE
+                    && it.status == METHOD_PAYMENT_ACTIVE
+                    && it.id.isNotEmpty()
+                    && it.name.isNotEmpty()
+                    && it.secureThumbnail.isNotEmpty()
+        }?.map {
+                paymentMethod -> creditCardPayments.add(paymentMethod.fromDomainToUi())
         }
 
         return creditCardPayments

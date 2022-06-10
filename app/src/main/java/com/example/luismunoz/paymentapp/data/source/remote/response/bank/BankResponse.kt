@@ -8,10 +8,10 @@ data class BankResponse(
 	val thumbnail: String? = null,
 
 	@SerializedName("secure_thumbnail")
-	val secureThumbnail: String? = null,
+	val secureThumbnail: String,
 
 	@SerializedName("name")
-	val name: String? = null,
+	val name: String,
 
 	@SerializedName("merchant_account_id")
 	val merchantAccountId: Any? = null,
@@ -20,8 +20,8 @@ data class BankResponse(
 	val processingMode: String? = null,
 
 	@SerializedName("id")
-	val id: String? = null,
+	val id: String,
 
 	@SerializedName("status")
-	val status: String? = null
+	val status: String
 )
