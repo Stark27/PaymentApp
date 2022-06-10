@@ -47,31 +47,39 @@ class AmountEnterFragment : Fragment() {
     }
 
     private fun initViews() {
-        val amountFormat = Util.currencyFormat(ZERO_AMOUNT)
-        binding.edAmountEnterFragmentValue.setText(amountFormat)
+        val amountValue = viewModel.amountValidateValue
+        binding.edAmountEnterFragmentValue.setText(amountValue)
     }
 
     /**
      *  Init the observer that show an error or trigger a navigation
      */
     private fun initObservers() {
-        viewModel.amountValidate.observe(viewLifecycleOwner, Observer {
-            it.getContentIfNotHandled()?.let { result ->
-                when(result) {
-                    ValidateAmountStatus.MIN_AMOUNT -> {
-                        binding.tilAmountEnterFragmentAmountContainer.error = getString(R.string.text_add_amount_different_to_zero)
-                        binding.btnAmountEnterFragmentGoToPaymentMethod.isEnabled = false
-                    }
-                    ValidateAmountStatus.MAX_AMOUNT -> {
-                        binding.tilAmountEnterFragmentAmountContainer.error = getString(R.string.text_add_amount_max_allow)
-                        binding.btnAmountEnterFragmentGoToPaymentMethod.isEnabled = false
-                    }
-                    else -> {
-                        binding.tilAmountEnterFragmentAmountContainer.error = null
-                        binding.btnAmountEnterFragmentGoToPaymentMethod.isEnabled = true
-                    }
+        viewModel.validateAmountStatus.observe(viewLifecycleOwner, Observer { result ->
+            when(result) {
+                ValidateAmountStatus.MIN_AMOUNT -> {
+                    binding.edAmountEnterFragmentValue.setText(viewModel.amountValidateValue)
+                    binding.tilAmountEnterFragmentAmountContainer.error = getString(R.string.text_add_amount_different_to_zero)
+                    binding.btnAmountEnterFragmentGoToPaymentMethod.isEnabled = false
+                }
+                ValidateAmountStatus.MAX_AMOUNT -> {
+                    binding.edAmountEnterFragmentValue.setText(viewModel.amountValidateValue)
+                    binding.tilAmountEnterFragmentAmountContainer.error = getString(R.string.text_add_amount_max_allow)
+                    binding.btnAmountEnterFragmentGoToPaymentMethod.isEnabled = false
+                }
+                ValidateAmountStatus.VALID_AMOUNT -> {
+                    binding.edAmountEnterFragmentValue.setText(viewModel.amountValidateValue)
+                    binding.tilAmountEnterFragmentAmountContainer.error = null
+                    binding.btnAmountEnterFragmentGoToPaymentMethod.isEnabled = true
+                }
+                else -> {
+                    binding.edAmountEnterFragmentValue.setText(viewModel.amountValidateValue)
+                    binding.btnAmountEnterFragmentGoToPaymentMethod.isEnabled = false
                 }
             }
+
+            binding.edAmountEnterFragmentValue.addTextChangedListener(validateTextAmount)
+            binding.edAmountEnterFragmentValue.setSelection(binding.edAmountEnterFragmentValue.length())
         })
     }
 
@@ -84,8 +92,7 @@ class AmountEnterFragment : Fragment() {
         binding.edAmountEnterFragmentValue.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val amountValue = binding.edAmountEnterFragmentValue.text.toString()
-                val cleanedAmount = Util.cleanAmount(amountValue).toInt()
-                viewModel.validateAmountInput(amountValue = cleanedAmount)
+                viewModel.validateAmountObserver(amountString = amountValue)
             }
             false
         }
@@ -112,22 +119,8 @@ class AmountEnterFragment : Fragment() {
 
         override fun afterTextChanged(s: Editable?) {
             val amountString = s.toString()
-            val cleanedAmount: Int
             binding.edAmountEnterFragmentValue.removeTextChangedListener(this)
-
-            if (amountString.isNotEmpty() && amountString.length > MIN_AMOUNT_LENGTH) {
-                cleanedAmount = Util.cleanAmount(amountString).toInt()
-                val amountFormat = Util.currencyFormat(cleanedAmount)
-                binding.edAmountEnterFragmentValue.setText(amountFormat)
-            } else {
-                val amountFormat = Util.currencyFormat(ZERO_AMOUNT)
-                cleanedAmount = ZERO_AMOUNT
-                binding.edAmountEnterFragmentValue.setText(amountFormat)
-            }
-
-            binding.edAmountEnterFragmentValue.setSelection(binding.edAmountEnterFragmentValue.length())
-            binding.edAmountEnterFragmentValue.addTextChangedListener(this)
-            viewModel.validateAmountInput(amountValue = cleanedAmount)
+            viewModel.validateAmountObserver(amountString)
         }
     }
 
